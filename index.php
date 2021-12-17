@@ -26,9 +26,6 @@
     <h2>Paragrafo censurato</h2>
     <p> <?php echo $censoredText?> </p>
     <div>Il paragrafo censurato contiene <?php echo strlen($censoredText) ?> caratteri, spazi inclusi</div>
-    <script>
-
-    </script>
 </body>
 
 </html>
