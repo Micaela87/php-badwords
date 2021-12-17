@@ -20,7 +20,7 @@
         <button>Send Value</button>
     </form>
     <?php
-    
+
         $badWord = $_GET['badword'];
         
         $titleCensoredParagraph = '';
@@ -34,10 +34,10 @@
         }
         
     ?>
-    <h2>Paragrafo censurato</h2>
+    <h2><?php echo $titleCensoredParagraph ?></h2>
     
-    <p> <?php echo $censoredText?> </p>
-    <div>Il paragrafo censurato contiene <?php echo strlen($censoredText) ?> caratteri, spazi inclusi</div>
+    <p> <?php echo $censoredText ?> </p>
+    <div>Il paragrafo contiene <?php echo strlen($censoredText) ?> caratteri, spazi inclusi</div>
 </body>
 
 </html>
