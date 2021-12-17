@@ -19,11 +19,23 @@
         <input type="text" id="badword" name="badword">
         <button>Send Value</button>
     </form>
-    <?php 
+    <?php
+    
         $badWord = $_GET['badword'];
-        $censoredText = str_replace($badWord, '***', $text);
+        
+        $titleCensoredParagraph = '';
+
+        if (str_contains($text, $badWord)) {
+            $titleCensoredParagraph = 'Paragrafo Censurato';
+            $censoredText = str_replace($badWord, '***', $text);
+        } else {
+            $titleCensoredParagraph = 'Il paragrafo non contiene la parola inserita';
+            $censoredText = $text;
+        }
+        
     ?>
     <h2>Paragrafo censurato</h2>
+    
     <p> <?php echo $censoredText?> </p>
     <div>Il paragrafo censurato contiene <?php echo strlen($censoredText) ?> caratteri, spazi inclusi</div>
 </body>
