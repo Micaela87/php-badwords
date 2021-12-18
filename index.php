@@ -19,35 +19,29 @@
         <input type="text" id="badword" name="badword">
         <button>Send Value</button>
     </form>
+    
     <?php
-
-        $badWord = trim($_GET['badword']);
 
         $titleCensoredParagraph = '';
 
-        if ($badWord && str_contains(strtolower($text), strtolower($badWord))) {
-            
-            $textInArray = explode(' ', $text);
+        $badWord = trim($_GET['badword']);
 
-            foreach ($textInArray as &$value) {
-                if (strtolower($value) === strtolower($badWord)) {
-                    $value = '***';
-                }
-            }
+        $pattern = '/' . $badWord . '/i';
 
+        if ($badWord && preg_match($pattern, $text)) {
             $titleCensoredParagraph = 'Paragrafo Censurato';
-            $censoredText = implode(' ', $textInArray);
-
+            $text = preg_replace($pattern, '***', $text);
         } else {
             $titleCensoredParagraph = 'Il paragrafo non contiene la parola inserita';
-            $censoredText = $text;            
         }
-        
+
     ?>
+
     <h2><?php echo $titleCensoredParagraph ?></h2>
     
-    <p> <?php echo $censoredText ?> </p>
-    <div>Il paragrafo contiene <?php echo strlen($censoredText) ?> caratteri, spazi inclusi</div>
+    <p> <?php echo $text ?> </p>
+    <div>Il paragrafo contiene <?php echo strlen($text) ?> caratteri, spazi inclusi</div>
+
 </body>
 
 </html>
