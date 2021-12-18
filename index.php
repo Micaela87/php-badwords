@@ -21,16 +21,26 @@
     </form>
     <?php
 
-        $badWord = $_GET['badword'];
-        
+        $badWord = trim($_GET['badword']);
+
         $titleCensoredParagraph = '';
 
-        if (str_contains($text, $badWord)) {
+        if ($badWord && str_contains(strtolower($text), strtolower($badWord))) {
+            
+            $textInArray = explode(' ', $text);
+
+            foreach ($textInArray as &$value) {
+                if (strtolower($value) === strtolower($badWord)) {
+                    $value = '***';
+                }
+            }
+
             $titleCensoredParagraph = 'Paragrafo Censurato';
-            $censoredText = str_replace($badWord, '***', $text);
+            $censoredText = implode(' ', $textInArray);
+
         } else {
             $titleCensoredParagraph = 'Il paragrafo non contiene la parola inserita';
-            $censoredText = $text;
+            $censoredText = $text;            
         }
         
     ?>
